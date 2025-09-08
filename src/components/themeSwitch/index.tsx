@@ -23,21 +23,15 @@ export function ThemeSwitch() {
   }
 
   return (
-    <>
-      <button className="rounded-full p-2 shadow-md shadow-purple-400 *:transition-all *:ease-in-out *:duration-300 dark:shadow-amber-400 dark:bg-white" onClick={toggleTheme}>
-        {theme === "light" ? (
-          <FaMoon
-            className="text-gray-600 hover:text-purple-400"
-          />
-        ) : (
-          <FaSun
-            className="text-gray-600 hover:text-amber-400"
-          />
-        )}
-      </button>
-      <div>
-        <p>Theme: {theme}</p>
-      </div>
-    </>
+    <button
+      className="rounded-full p-2 shadow-md shadow-purple-400 *:transition-all *:ease-in-out *:duration-300 dark:shadow-amber-400 dark:bg-white"
+      onClick={toggleTheme}
+    >
+      {theme === "light" ? (
+        <FaMoon className="text-gray-600 hover:text-purple-400" />
+      ) : (
+        <FaSun className="text-gray-600 hover:text-amber-400" />
+      )}
+    </button>
   );
 }
