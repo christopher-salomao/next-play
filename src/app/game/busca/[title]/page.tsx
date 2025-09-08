@@ -5,9 +5,9 @@ import type { GameProps } from "@/utils/types/game";
 
 async function getData(title: string) {
   try {
+    const decodedTitle = decodeURI(title);
     const response = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game&title=${title}`,
-      { next: { revalidate: 320 } }
+      `${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodedTitle}`
     );
 
     return response.json();
@@ -17,13 +17,11 @@ async function getData(title: string) {
 }
 
 export default async function Search({
-  params: { title },
+  params,
 }: {
   params: { title: string };
 }) {
-  const games: GameProps[] | null = await getData(title);
-
-  console.log(games);
+  const games: GameProps[] | null = await getData(params.title);
 
   return (
     <main className="w-full">
