@@ -16,8 +16,7 @@ export function Header() {
             height={80}
             quality={100}
             priority
-            objectFit="contain"
-            className=""
+            className="object-contain"
           />
         </Link>
         <div className="flex items-center gap-4">

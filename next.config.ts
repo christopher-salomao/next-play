@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: "sujeitoprogramador.com",
       },
     ],
+    qualities: [100],
   },
 };
 

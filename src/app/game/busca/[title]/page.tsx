@@ -16,12 +16,12 @@ async function getData(title: string) {
   }
 }
 
-export default async function Search({
-  params,
-}: {
-  params: { title: string };
-}) {
-  const games: GameProps[] | null = await getData(params.title);
+interface SearckPageProps {
+  params: Promise<{ title: string }>;
+}
+
+export default async function Search({ params }: SearckPageProps) {
+  const games: GameProps[] | null = await getData((await params).title);
 
   return (
     <main className="w-full">

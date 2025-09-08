@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
-  title: "Next Play - Descubra os melhores jogos para se divertir",
+  title: "Next Play | Descubra os melhores jogos para se divertir",
   description:
     "Uma plataforma de catalogo de jogos moderna que você pode encontrar variados jogos diversos.",
   keywords: [
