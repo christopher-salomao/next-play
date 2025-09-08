@@ -2,15 +2,30 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Container } from "@/components/container";
-import { BsArrowRightSquare } from "react-icons/bs";
 import { SearchInput } from "@/components/searchInput";
+import { GameCard } from "@/components/gameCard";
+import { BsArrowRightSquare } from "react-icons/bs";
 
 import type { GameProps } from "@/utils/types/game";
 
 async function getDailyGame() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game_day`, { next: { revalidate: 320 } }
+      `${process.env.NEXT_API_URL}/next-api/?api=game_day`,
+      { next: { revalidate: 320 } }
+    );
+
+    return response.json();
+  } catch (error) {
+    throw new Error("Failed to fetch data");
+  }
+}
+
+async function getGamesData() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_API_URL}/next-api/?api=games`,
+      { next: { revalidate: 320 } }
     );
 
     return response.json();
@@ -21,6 +36,7 @@ async function getDailyGame() {
 
 export default async function Home() {
   const dailyGame: GameProps = await getDailyGame();
+  const gamesData: GameProps[] = await getGamesData();
 
   return (
     <main className="w-full">
@@ -52,6 +68,14 @@ export default async function Home() {
         </Link>
 
         <SearchInput />
+
+        <h2 className="text-lg font-bold mt-8 mb-5">Jogos Populares</h2>
+
+        <section className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {gamesData.map((game) => (
+            <GameCard key={game.id} data={game} />
+          ))}
+        </section>
       </Container>
     </main>
   );
